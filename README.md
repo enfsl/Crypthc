@@ -10,3 +10,5 @@ still developing, still not finished, suitable for use, but can be bug
 
 requirements
 - Windows Subsystem for Linux (WSL)
+
+GNU General Public License v3.0
