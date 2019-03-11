@@ -19,8 +19,7 @@ namespace crypthc
                 using (Process myProc = new Process())
                 {
                     myProc.StartInfo.UseShellExecute = false;
-                    /*string FilePath = Path.Combine(Environment.SystemDirectory, "bash.exe");*/ // Finds the path to the system folder and uses bash.exe from there
-                    myProc.StartInfo.FileName = "bash.exe"; // path and program to start
+                    myProc.StartInfo.FileName = "bash.exe";
 
                     myProc.StartInfo.WorkingDirectory = directory;
                     myProc.StartInfo.RedirectStandardOutput = true; // output redirect cmd window
@@ -92,8 +91,6 @@ namespace crypthc
             {
                 Console.WriteLine("Enter a valid hash type! > (SHA1, SHA256, SHA512, MD5)");
             }
-
-            Console.Write("Would you like to compare the hash with the hash created? Y/N = ");
 
             Console.Write("Press one key to exit..");
             Console.ReadKey();

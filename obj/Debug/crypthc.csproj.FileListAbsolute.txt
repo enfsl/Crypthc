@@ -1,6 +1,0 @@
-C:\Users\emren\Documents\Visual Studio 2015\Projects\myproject\crypthc\crypthc\bin\Debug\crypthc.exe.config
-C:\Users\emren\Documents\Visual Studio 2015\Projects\myproject\crypthc\crypthc\bin\Debug\crypthc.exe
-C:\Users\emren\Documents\Visual Studio 2015\Projects\myproject\crypthc\crypthc\bin\Debug\crypthc.pdb
-C:\Users\emren\Documents\Visual Studio 2015\Projects\myproject\crypthc\crypthc\obj\Debug\crypthc.exe
-C:\Users\emren\Documents\Visual Studio 2015\Projects\myproject\crypthc\crypthc\obj\Debug\crypthc.pdb
-C:\Users\emren\Documents\Visual Studio 2015\Projects\myproject\crypthc\crypthc\obj\Debug\crypthc.csprojResolveAssemblyReference.cache
