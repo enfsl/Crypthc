@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.ComponentModel;
 using System.Diagnostics;
+using System.ComponentModel;
 using System.IO;
 
 namespace crypthc
@@ -19,29 +19,29 @@ namespace crypthc
                 using (Process myProc = new Process())
                 {
                     myProc.StartInfo.UseShellExecute = false;
-                    myProc.StartInfo.FileName = "bash.exe"; // başlayacak proc adı
-                    myProc.StartInfo.WorkingDirectory = directory; // proc'un işlem yapacağı dizin
-                    myProc.StartInfo.RedirectStandardOutput = true; // çıkış 
-                    myProc.StartInfo.RedirectStandardInput = true; // giriş
-                    myProc.StartInfo.CreateNoWindow = true; // tek cmd ekranı
+                    /*string FilePath = Path.Combine(Environment.SystemDirectory, "bash.exe");*/ // Finds the path to the system folder and uses bash.exe from there
+                    myProc.StartInfo.FileName = "bash.exe"; // path and program to start
 
-                    myProc.Start(); // proc koş
+                    myProc.StartInfo.WorkingDirectory = directory;
+                    myProc.StartInfo.RedirectStandardOutput = true; // output redirect cmd window
+                    myProc.StartInfo.RedirectStandardInput = true; // input redirect cmd window
+                    myProc.StartInfo.CreateNoWindow = true; // Do not create any other window in operations
+                 
+                    myProc.Start(); // process run
 
-                    myProc.StandardInput.Write("{0} {1}", checksum, file); // komut satırına yaz
-                    myProc.StandardInput.Close(); // girişi kapat
-                    myProc.WaitForExit(); // bitişi bekle
-
-                    // kodun tek çıktısı oluyor o yüzden başta yazdırmam lazım. galiba..
+                    myProc.StandardInput.Write("{0} {1}", checksum, file); // write to input window
+                    myProc.StandardInput.Close(); // if finsh command input, close.
+                    myProc.WaitForExit(); // wait for end.
 
                     Console.WriteLine(">>");
-                    Console.Write(myProc.StandardOutput.ReadToEnd()); // bashten dönen output'u yazdır
+                    Console.Write(myProc.StandardOutput.ReadToEnd()); // print command redirect from bash
                     Console.WriteLine("<<");
 
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Sisteminizde Linux Subsystem kurulu olmayabilir. Lütfen hata mesajını kontrol edin = " + ex.ToString());
+                Console.WriteLine("Your system may not have Linux Subsystem installed. Please check the error messages = " + ex.ToString());
             }
         }
         static void Main(string[] args)
@@ -49,15 +49,15 @@ namespace crypthc
             Console.WriteLine("--------------------------------------------------------------------------");
             Console.WriteLine("| Author: M.Emre Nefesli 'jasyuiop' | The GNU General Public License v3.0 |");
             Console.WriteLine("--------------------------------------------------------------------------");
-            Console.Write("Checksum yapacağınız dosyanın tam yolunu giriniz : ");
+            Console.Write("Enter the full path of the file you want to do checksum : ");
             string directory = @Console.ReadLine();
 
-            string[] filesplt = directory.Split('\\'); // directory bilgisinden file'ımı aldırıyorum
-            string file = filesplt[filesplt.Length - 1];
+            string[] filesplit = directory.Split('\\'); // get "fil"e from "directory" info
+            string file = filesplit[filesplit.Length - 1];
 
-            directory = directory.Replace(file, ""); // directory bilgisinden file'ı siliyorum.
+            directory = directory.Replace(file, ""); // remove "file" from "directory" info
 
-            Console.WriteLine("Hangi hash tipinin Checksum'unu yapmak istersiniz ?");
+            Console.WriteLine("You want to do the Checksum of which type of hash ?");
             Console.Write("(SHA1, SHA256, SHA512, MD5) ? = ");
             string checksum = Console.ReadLine();
             if (checksum == "SHA1" || checksum == "SHA256" || checksum == "SHA512" || checksum == "MD5" ||
@@ -90,43 +90,13 @@ namespace crypthc
             }
             else
             {
-                Console.WriteLine("Geçerli bir hash tipi giriniz ! > (SHA1, SHA256, SHA512, MD5)");
+                Console.WriteLine("Enter a valid hash type! > (SHA1, SHA256, SHA512, MD5)");
             }
 
-            Console.Write("Oluşturulan hash ve size verilen hash'i karşılaştırmak istermisiniz ? E/H = ");
+            Console.Write("Would you like to compare the hash with the hash created? Y/N = ");
 
-            //char gverify = Convert.ToChar(Console.ReadLine());
-            //if (gverify == 'E' || gverify == 'e')
-            //{
-            //    Console.Write("Hash'i Giriniz = ");
-            //    string ghash = Console.ReadLine();
-            //    ghash.ToLower();
-            //    Program p = new Program();
-            //    string cnhash = Sr.ReadLine();
-            //    Console.WriteLine(cnhash);
-                
-            //}
-
-                //    // geriye dönen hash içerisinde boşluk ve file bilgisi de yer alıyor bunları atmam lazım
-                //    GlobalHash g = new GlobalHash();
-                //    Console.WriteLine(g.globald);
-                //    string[] th = g.globald.Split(' ');
-                //    string truehash = "";
-                //    for (int i = 0; i < th.Length; i++)
-                //    {
-                //        if (th[i] != " ")
-                //        {
-                //            truehash = truehash + th[i];
-                //        }
-                //        else break;
-                //    }
-
-                //    if (ghash == truehash)
-                //        Console.WriteLine("Hash'ler karşılaştırıldı: HASH DOĞRU!!");
-                //    else Console.WriteLine("Hash'ler karşılaştırıldı: HASH YANLIŞ!!");
-
-                Console.Write("Çıkmak için bir tuşa basın..");
-                Console.ReadKey();
+            Console.Write("Press one key to exit..");
+            Console.ReadKey();
         }
     }
 }
