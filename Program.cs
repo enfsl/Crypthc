@@ -22,15 +22,15 @@ namespace crypthc
                     myProc.StartInfo.FileName = "bash.exe";
 
                     myProc.StartInfo.WorkingDirectory = directory;
-                    myProc.StartInfo.RedirectStandardOutput = true; // output redirect cmd window
                     myProc.StartInfo.RedirectStandardInput = true; // input redirect cmd window
+                    myProc.StartInfo.RedirectStandardOutput = true; // output redirect cmd window
                     myProc.StartInfo.CreateNoWindow = true; // Do not create any other window in operations
                  
-                    myProc.Start(); // process run
+                    myProc.Start();
 
                     myProc.StandardInput.Write("{0} {1}", checksum, file); // write to input window
-                    myProc.StandardInput.Close(); // if finsh command input, close.
-                    myProc.WaitForExit(); // wait for end.
+                    myProc.StandardInput.Close(); 
+                    myProc.WaitForExit();
 
                     Console.WriteLine(">>");
                     Console.Write(myProc.StandardOutput.ReadToEnd()); // print command redirect from bash
@@ -62,30 +62,8 @@ namespace crypthc
             if (checksum == "SHA1" || checksum == "SHA256" || checksum == "SHA512" || checksum == "MD5" ||
                 checksum == "sha1" || checksum == "sha256" || checksum == "sha512" || checksum == "md5")
             {
-                if (checksum == "SHA1" || checksum == "sha1")
-                {
-                    checksum = "sha1sum ";                   
-                    Program.Proc(directory, checksum, file);
-
-                }
-                else if (checksum == "SHA256" || checksum == "sha256")
-                {
-                    checksum = "sha256sum";
-                    Program.Proc(directory, checksum, file);
-
-                }
-                else if (checksum == "SHA512" || checksum == "sha512")
-                {
-                    checksum = "sha512sum";
-                    Program.Proc(directory, checksum, file);
-
-                }
-                else if (checksum == "MD5" || checksum == "md5")
-                {
-                    checksum = "md5sum";
-                    Program.Proc(directory, checksum, file);
-
-                }
+                checksum += "sum";
+                Program.Proc(directory, checksum, file);
             }
             else
             {
