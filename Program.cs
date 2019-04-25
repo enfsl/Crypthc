@@ -17,7 +17,7 @@ namespace crypthc
             try
             {
                     Process myProc = new Process();
-                    myProc.StartInfo.UseShellExecute = false;
+                    myProc.StartInfo.UseShellExecute = false; // for IO process 
                     myProc.StartInfo.FileName = "bash.exe";
 
                     myProc.StartInfo.WorkingDirectory = directory;
