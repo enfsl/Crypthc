@@ -16,8 +16,7 @@ namespace crypthc
         {
             try
             {
-                using (Process myProc = new Process())
-                {
+                    Process myProc = new Process();
                     myProc.StartInfo.UseShellExecute = false;
                     myProc.StartInfo.FileName = "bash.exe";
 
@@ -32,11 +31,9 @@ namespace crypthc
                     myProc.StandardInput.Close(); 
                     myProc.WaitForExit();
 
-                    Console.WriteLine(">>");
-                    Console.Write(myProc.StandardOutput.ReadToEnd()); // print command redirect from bash
-                    Console.WriteLine("<<");
-
-                }
+                    Console.WriteLine(">>\n");
+                    Console.Write(myProc.StandardOutput.ReadToEnd()); // redirect command to cmd
+                    Console.WriteLine("\n<<");
             }
             catch (Exception ex)
             {
@@ -51,7 +48,7 @@ namespace crypthc
             Console.Write("Enter the full path of the file you want to do checksum : ");
             string directory = @Console.ReadLine();
 
-            string[] filesplit = directory.Split('\\'); // get "fil"e from "directory" info
+            string[] filesplit = directory.Split('\\'); // get "file" from "directory" info
             string file = filesplit[filesplit.Length - 1];
 
             directory = directory.Replace(file, ""); // remove "file" from "directory" info
